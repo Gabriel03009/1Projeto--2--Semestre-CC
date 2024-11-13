@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Automotivo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="java.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Souza Centro Automotivo</h1>
+        <nav>
+            <ul>
+                <li><u><a href="#servicos">Serviços</a></u></li>
+                <li><u><a href="#galeria">Galeria</a></u></li>
+                <li><u><a href="#contato">Contato</a></u></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="welcome-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Bem-vindo ao Souza Centro Automotivo!</h2>
+            <p>Explore nossos serviços e entre em contato para mais informações.</p>
+        </div>
+    </div>
+    <body><section>
+        <h2>Serviços</h2>
+        <div class="services">
+            <div class="service-item">
+                <img src="AlinhamentoC.png" alt="Alinhamento" class="service-image">
+                <h3 class="service-title">Alinhamento</h3>
+            </div>
+            <div class="service-item">
+                <img src="Balanceamento.png" alt="" class="service-image">
+                <h3 class="service-title">Balanceamento</h3>
+            </div>
+            <div class="service-item">
+                <img src="Troca de OLeo.jpeg" alt="Troca de óleo" class="service-image">
+                <h3 class="service-title">Troca de óleo</h3>
+            </div>
+            <div class="service-item">
+                <img src="Escapamento.jpeg" alt="Reforma de roda - Escapamento" class="service-image">
+                <h3 class="service-title">Reforma de roda - Escapamento</h3>
+            </div>
+            <div class="service-item">
+                <img src="Suspensão.jpeg" alt="Suspensão em geral" class="service-image">
+                <h3 class="service-title">Suspensão em geral</h3>
+            </div>
+            <div class="service-item">
+                <img src="pneus.jpeg" alt="Pneus Nacionais" class="service-image">
+                <h3 class="service-title">Pneus Nacionais</h3>
+            </div>
+        </div>
+    </section>
+    <section>
+        <br>
+        <h1>
+            Interior da Loja
+        </h1>
+        <hr>
+        <div class="fotos">
+            <br>
+            <img src="Imagem2.JPG" alt="Interior da loja" width="300" height="200" onclick="abrirEmTelaCheia(this)">
+            <img src="Imagem3.JPG" alt="Interior da loja" width="300" height="200" onclick="abrirEmTelaCheia(this)">
+            <img src="Imagem4.JPG" alt="Interior da loja" width="300" height="200" onclick="abrirEmTelaCheia(this)">
+        </div>
+    </section>
+    <section>
+        <h2>Meios de Contato</h2>
+        <br>
+        <a href="https://wa.me/5511993992973" class="whatsapp-link" target="_blank">
+            &#9990 (+55) 11 99399-2973 - WhatsApp
+        </a>
+        
+         <a href="https://wa.me/5511989275108" class="whatsapp-link1" target="_blank">
+            &#9990 (+55) 11 98927-5108 - WhatsApp
+        </a>
+        <h3>horario de atendimento <br> 8:00 as 18:00 Segunda á sexta-feira - 8:00 as 16:00 Sabado<h3>
+        <h2> Endereço</h2>
+        <h3>&#9872 Avenida Aimará, n°659. Parque Pirajussara, Embu das Artes<br>
+            Brasil - SP - São Paulo</h3>
+        <br>
+    </section>
+    <section class="contato">
+        <h2>Entre em Contato</h2>
+        <form id="contactForm">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <label for="message">Mensagem:</label>
+            <textarea id="message" name="message"></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="responseMessage"></p>
+    </section>
+    </body>
+    <div id="modal" class="modal" onclick="fecharModal()">
+        <span class="fechar">&times;</span>
+        <img class="modal-conteudo" id="imagem-modal">
+    </div>
+    <footer>
+        <p>&copy; 2024 Souza Centro Automotivo. Todos os direitos reservados.</p>
+    </footer>
+    <script>
+        let lastScrollTop = 0;
+        const footer = document.querySelector('footer');
+        window.addEventListener('scroll', function() {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            if (st > lastScrollTop) {
+                footer.classList.add('footer-hidden');
+            } else {
+                footer.classList.remove('footer-hidden');
+            }
+            lastScrollTop = st <= 0 ? 0 : st;
+        });
+
+        function abrirEmTelaCheia(imagem) {
+            var modal = document.getElementById("modal");
+            var modalImg = document.getElementById("imagem-modal");
+            modal.style.display = "block";
+            modalImg.src = imagem.src;
+        }
+
+        function fecharModal() {
+            var modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                document.getElementById('responseMessage').textContent = 'Mensagem enviada com sucesso!';
+            } else {
+                document.getElementById('responseMessage').textContent = 'Por favor, preencha todos os campos.';
+            }
+        });
+
+        let index = 0;
+        function showNextImage() {
+            const images = document.querySelectorAll('.carousel img');
+            images[index].style.transform = `translateX(-${100 * index}%)`;
+            index = (index + 1) % images.length;
+            setTimeout(showNextImage, 3000);
+        }
+        showNextImage();
+
+        window.onload = function() {
+            document.getElementById('welcome-popup').style.display = 'block';
+        };
+        
+        function closePopup() {
+            document.getElementById('welcome-popup').style.display = 'none';
+        }
+    </script>
+    <footer>
+        <p>&copy; 2024 Souza Centro Automotivo. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
